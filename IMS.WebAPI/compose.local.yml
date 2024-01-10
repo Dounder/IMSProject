@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  api:
+    container_name: ims_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    volumes:
+      - .:/src
+      - ~/.nuget/packages:/root/.nuget/packages:ro
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    restart: always

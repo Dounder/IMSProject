@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: ims_db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Abcd@1234"
+    ports:
+      - "1433:1433"
+    restart: always
+    volumes:
+      - mssql:/var/opt/mssql
+
+volumes:
+  mssql:
